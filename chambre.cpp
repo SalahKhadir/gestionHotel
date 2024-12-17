@@ -5,7 +5,7 @@
 using namespace std;
 
 void Chambre::ajouterChambre() {
-    cout << "Entrer le id du Client: " << endl;
+    cout << "Entrer le id de la Chambre: " << endl;
     cin >> idChambre;
     cout << "Entrer le numero du telephone de la Chambre: " << endl;
     cin >> numeroTel;
