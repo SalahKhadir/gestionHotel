@@ -5,7 +5,7 @@
 using namespace std;
 
 
-void Client::ajouterClient() {
+void Client::setClient() {
     cout << "Entrer le id du Client: " << endl;
     cin >> idClient;
     cout << "Entrer le nom du Client: " << endl;
@@ -17,7 +17,7 @@ void Client::ajouterClient() {
 }
 
 
-void Client::displayClient() const {
+void Client::displayClient() {
     cout << "Le id du Client: " << idClient << endl;
     cout << "Le nom du Client: " << nom << endl;
     cout << "Le prenom du Client: " << prenom << endl;

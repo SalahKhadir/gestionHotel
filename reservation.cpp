@@ -11,24 +11,27 @@ void Reservation::verifyReservation() const {
 }
 
 bool Reservation::addRoom(const Chambre& newRoom) {
-    if (isReserved) {
-        cout << "Error: Room is already reserved." << endl;
-        return false;
-    }
-    room = make_unique<Chambre>(newRoom);
+    rooms.push_back(newRoom);
     isReserved = true;
     cout << "Room added successfully." << endl;
     return true;
 }
 
 void Reservation::displayReservation() const {
-    if (isReserved && room) {
-        room->displayChambre();
-    }
     client.displayClient();
     cout << "Start Date: " << startDate << endl;
     cout << "End Date: " << endDate << endl;
-    cout << (isReserved ? "The room is reserved." : "No room reserved.") << endl;
+    cout << "Number of rooms: " << rooms.size() << endl;
+
+    if (isReserved && !rooms.empty()) {
+        cout << "\nRooms in this reservation:" << endl;
+        for (size_t i = 0; i < rooms.size(); ++i) {
+            cout << "\nRoom " << (i + 1) << ":" << endl;
+            rooms[i].displayChambre();
+        }
+    } else {
+        cout << "No rooms reserved." << endl;
+    }
 }
 
 int Reservation::calculateDuration() const {
@@ -46,13 +49,21 @@ void Reservation::displayDuration() const {
     cout << "Duration: " << calculateDuration() << " day(s)" << endl;
 }
 
-bool Reservation::removeRoom() {
-    if (!isReserved || !room) {
-        cout << "Error: No room is currently reserved." << endl;
+bool Reservation::removeRoom(size_t index) {
+    if (!isReserved || rooms.empty()) {
+        cout << "Error: No rooms are currently reserved." << endl;
         return false;
     }
-    room.reset();
-    isReserved = false;
+
+    if (index >= rooms.size()) {
+        cout << "Error: Invalid room index." << endl;
+        return false;
+    }
+
+    rooms.erase(rooms.begin() + index);
+    if (rooms.empty()) {
+        isReserved = false;
+    }
     cout << "Room has been removed from the reservation." << endl;
     return true;
 }

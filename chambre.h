@@ -11,22 +11,9 @@ private:
     int numeroTel;
 
 public:
-    // Constructor:
-    Chambre(int idCh = 0, int T = 0) :
-    idChambre(idCh), numeroTel(T) {};
-
-    // Getters:
-    int getIdChambre() const {return  idChambre;};
-    int getNumeroTel() const {return  numeroTel;};
-
-    // Setters :
-    int setTel(int T) {numeroTel = T;};
-    int setIdChambre(int T) {idChambre = T;};
-
-
-    // Functions:
-    void ajouterChambre();
-    void displayChambre() const;
+    Chambre(int idCh = 0, int T = 0) : idChambre(idCh), numeroTel(T) {};
+    void setChambre();
+    void displayChambre();
     bool comparer(const Chambre &ch) const;
 };
 

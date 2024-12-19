@@ -4,15 +4,15 @@
 #include <ostream>
 using namespace std;
 
-void Chambre::ajouterChambre() {
-    cout << "Entrer le id de la Chambre: " << endl;
+void Chambre::setChambre() {
+    cout << "Entrer le id du Client: " << endl;
     cin >> idChambre;
     cout << "Entrer le numero du telephone de la Chambre: " << endl;
     cin >> numeroTel;
 }
 
 
-void Chambre::displayChambre() const {
+void Chambre::displayChambre() {
     cout << "Le id du Client: " << idChambre << endl;
     cout << "le numero du telephone de la Chambre: " << numeroTel << endl;
 }
