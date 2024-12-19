@@ -1,50 +1,42 @@
 #ifndef RESERVATION_H
 #define RESERVATION_H
 
-#include <vector>
-#include <string>
-#include "chambre.h"
 #include "client.h"
-.
+#include "chambre.h"
+#include <string>
+#include <vector>
+using namespace std;
+
 class Reservation {
 private:
-    int Code;
-    int NbrChambres;
-    std::vector<Chambre> DonneeChambres;
-    Client C;
-    std::string EtatReservation;
-    Date DateDebutReservation;
-    Date DateFinReservation;
+    int reservationCode;
+    Client client;
+    vector<Chambre> room;
+    string startDate;
+    string endDate;
+    bool isReserved;
 
 public:
-    Reservation(int code, int nbrChambres, const std::string& etatReservation, const Client& c, const Date& dateDebutReservation, const Date& dateFinReservation);
+    // Constructor
+    Reservation(int code, const Client& c, const Chambre& r, const string& start, const string& end)
+        : reservationCode(code), client(c), startDate(start), endDate(end), isReserved(true) {
+        room.push_back(r);
+    }
 
-    void setCode(int code);
-    int getCode() const;
+    // Getters
+    int getReservationCode() const { return reservationCode; }
+    string getStartDate() const { return startDate; }
+    string getEndDate() const { return endDate; }
+    Client getClient() const { return client; }
 
-    void setNbrChambres(int nbrChambres);
-    int getNbrChambres() const;
+    // Functions
+    void verifyReservation() const;
+    bool addRoom(const Chambre& newRoom);
+    void displayReservation() const;
+    int calculateDuration() const;
+    bool removeRoom();
+    bool updateReservation(int newCode, const string& newStartDate, const string& newEndDate);
 
-    void setDonneeChambres(const std::vector<Chambre>& donneechambres);
-    std::vector<Chambre> getDonneeChambres() const;
-
-    void setEtatReservation(const std::string& etatReservation);
-    std::string getEtatReservation() const;
-
-    void setDateDebutReservation(const Date& dateDebutReservation);
-    Date getDateDebutReservation() const;
-
-    void setDateFinReservation(const Date& dateFinReservation);
-    Date getDateFinReservation() const;
-
-    void setClient(const Client& c);
-    Client getClient() const;
-
-    void ajoutChambre(const Chambre& ch);
-    void afficheReservation() const;
-    int calculDureeReservation() const;
-    void supprimeChambre(const Chambre& ch);
-    void modifierEtatReservation(const std::string& nouvelEtat);
 };
 
 #endif // RESERVATION_H
